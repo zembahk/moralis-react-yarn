@@ -32,12 +32,7 @@ function App() {
   }
 
   const logOut = async () => {
-    if (user){
-      console.log("Logged in as: \n\t",user.get("ethAddress"));
-    }
-    else{
-      console.log("User already logged out")
-    }
+    console.log("Logged in as: \n\t",user!.get("ethAddress"));
     await logout();
     console.log("Logging out DONE");
   }
@@ -46,7 +41,7 @@ function App() {
     <div>
       <h1>Moralis Hello World!</h1>
       <button id="login_btn" onClick={login} disabled={isAuthenticated || isAuthenticating}>Moralis Metamask Login</button>
-      <button id="logout_btn" onClick={logOut} disabled={!isAuthenticated ||isAuthenticating}>Logout</button>
+      <button id="logout_btn" onClick={logOut} disabled={!isAuthenticated}>Logout</button>
     </div>
   );
 }
