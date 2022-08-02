@@ -37,7 +37,7 @@ function App() {
   useEffect(() => {
     
     if (isAuthenticated) {
-
+      console.log(user!.get("ethAddress"))
     }
     
   // eslint-disable-next-line react-hooks/exhaustive-deps
