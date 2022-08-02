@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState} from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import  {CONTRACT_ABI, CONTRACT_ADDRESS } from './abi';
@@ -14,9 +14,8 @@ function App() {
   const [fed, setFed] = useState(-1);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [image, setImage] = useState("");
+  //const [image, setImage] = useState("");
   const [animate, setAnimate] = useState("")
-  
 
   const handleNameChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
     setName(event.target.value);
@@ -90,7 +89,7 @@ function App() {
       console.log(jsonData)
       setTitle(JSON.parse(JSON.stringify(jsonData)).title)
       setDescription(JSON.parse(JSON.stringify(jsonData)).description)
-      setImage(JSON.parse(JSON.stringify(jsonData)).image)
+      //setImage(JSON.parse(JSON.stringify(jsonData)).image)
       setAnimate(JSON.parse(JSON.stringify(jsonData)).animation_url)
     })
     .catch((error) => {
@@ -102,16 +101,17 @@ function App() {
     await getTimesFed();
   }
 
-  const clearData=async () => {
+  const clearData = async () => {
     setTitle("")
     setDescription("")
-    setImage("")
+    //setImage("")
     setAnimate("")
     setFed(-1)
     setName("")
     setBamboo("")
     setFeed("")
     setId("")
+    document.getElementById("input_name")?.focus()
   }
 
   const getTimesFed = async () => {
@@ -209,14 +209,14 @@ function App() {
       <button id="login_btn" onClick={login} disabled={isAuthenticated || isAuthenticating}>Moralis Metamask Login</button>
       <button id="logout_btn" onClick={logOut} disabled={!isAuthenticated}>Logout</button>
       <p></p>
-      <button id="clear_btn" onClick={clearData}>Clear Fields </button>
+      <button id="clear_btn" onClick={clearData} >Clear Fields </button>
       <br></br>
       <label> Token ID: </label>
       <input id="input_id" type="number" name="id" onChange={handleIdChange} value={id} />
       <button id="data_btn" onClick={getTokenData} disabled={!isAuthenticated || !id || parseInt(id) < 0}>Token Data </button>
       <br></br>
       <label> Name: </label>
-      <input id="input_name" type="text" name="name" onChange={handleNameChange} value={name} />
+      <input id="input_name" type="text" name="name" onChange={handleNameChange} value={name} autoFocus/>
       <button id="panda_btn" onClick={newPanda} disabled={!isAuthenticated || !name || parseInt(id) > -1 }>New HogePanda 🐼</button>
       <br></br>
       <input id="input_title" type="text" name="title" value={title} disabled />
