@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react'
 import './App.css'
 import { CONTRACT_ABI } from './abi'
-import { useMoralis, useChain } from 'react-moralis'
+import { useMoralis, useChain, useWeb3ExecuteFunction } from 'react-moralis'
 import Moralis from 'moralis'
 import ReactPlayer from 'react-player'
 
@@ -18,10 +18,10 @@ function App() {
   const [userAddress, setUserAddress] = useState('')
   const [hogePandasAddress] = useState('0x5Ea0333638b035BB911eD77F101C2bea979A2843') // polygon chain 
 
-  const handleNameChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
-    setName(event.target.value);
-  };
-  const handleIdChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+  const handleNameChange = (event: { target: { value: React.SetStateAction<string> } }) => {
+    setName(event.target.value)
+  }
+  const handleIdChange = (event: { target: { value: React.SetStateAction<string> } }) => {
     if (parseInt(id) < 0) {
       setId('0')
     } else {setId(event.target.value)}
@@ -36,7 +36,7 @@ function App() {
       setFeed('1')
     } else {setFeed(event.target.value)}
   }
-  const { switchNetwork, chainId, chain } = useChain();
+  const { switchNetwork, chainId, chain } = useChain()
   const { Moralis, authenticate, isAuthenticated, isAuthenticating, user, logout } = useMoralis()
   const ethers = Moralis.web3Library
 
@@ -78,29 +78,29 @@ function App() {
       await authenticate({signingMessage: "Log in using Moralis" })
         .then(function (user) {
           if(!user){return}
-          console.log("Logged in user:\n\t", userAddress);
+          console.log("Logged in user:\n\t", userAddress)
         })
         .catch(function (error) {
-          console.log(error);
-        });
+          console.log(error)
+        })
     }
   }
 
   const logOut = async () => {
-    console.log("Logged in as: \n\t", userAddress);
-    await logout();
+    console.log("Logged in as: \n\t", userAddress)
+    await logout()
     setUserAddress('')
-    console.log("Logging out DONE");
+    console.log("Logging out DONE")
   }
 
   const exeFunc = async (options: Moralis.ExecuteFunctionOptions) => {
     try{
-      await Moralis.enableWeb3();
-      const result = await Moralis.executeFunction(options);
-      const json = JSON.parse(JSON.stringify(result));
-      return json;
+      await Moralis.enableWeb3()
+      const result = await Moralis.executeFunction(options)
+      const json = JSON.parse(JSON.stringify(result))
+      return json
     } catch(e) {
-      console.log('Error', e);
+      console.log('Error', e)
       return { "error": e }
     }
   }
@@ -122,8 +122,8 @@ function App() {
       clearData()
       return
     })
-    await getTokenName();
-    await getTimesFed();
+    await getTokenName()
+    await getTimesFed()
   }
 
   const getTimesFed = async () => {
@@ -132,9 +132,9 @@ function App() {
       functionName: "getTimesFed",
       abi: CONTRACT_ABI,
       params: { nft_id: parseInt(id) }
-    };
-    const result = await exeFunc(options);
-    setFed(parseInt(result.hex, 16));
+    }
+    const result = await exeFunc(options)
+    setFed(parseInt(result.hex, 16))
   }
 
   const getTokenName = async () => {
@@ -143,77 +143,78 @@ function App() {
       functionName: "getTokenName",
       abi: CONTRACT_ABI,
       params: { nft_id: parseInt(id) }
-    };
-    const result = await exeFunc(options);
+    }
+    const result = await exeFunc(options)
     if(result?.error){clearData()}
-    else {setName(result)}
-    console.log(name)
+    else {
+      setName(result)
+    }
   }
 
   const newPanda = async () => {
-    if (!user){return};
+    if (!user){return}
     const options = {
       contractAddress: hogePandasAddress,
       functionName: "createHogePanda",
       abi: CONTRACT_ABI,
       msgValue: Moralis.Units.ETH("0.025"),
       params: { account: user.get('ethAddress'), nft_name: name }
-    };
-    const result = await exeFunc(options);
+    }
+    const result = await exeFunc(options)
     console.log(result)
   }
   
   const createBamboo = async () => {
-    if (!user){return};
-    const price = parseInt(bamboo) * 0.01;
+    if (!user){return}
+    const price = parseInt(bamboo) * 0.01
     const options = {
       contractAddress: hogePandasAddress,
       functionName: "createBamboo",
       abi: CONTRACT_ABI,
       msgValue: Moralis.Units.ETH(price),
       params: { account: user.get('ethAddress'), amount: parseInt(bamboo) }
-    };
-    const result = await exeFunc(options);
+    }
+    const result = await exeFunc(options)
     console.log(result)
   }
 
   const feedBamboo = async () => {
-    if (!user){return};
-    const price = (parseInt(feed) * 0.01);
+    if (!user){return}
+    const price = (parseInt(feed) * 0.01)
     const options = {
       contractAddress: hogePandasAddress,
       functionName: "feedBamboo",
       abi: CONTRACT_ABI,
       msgValue: Moralis.Units.ETH(price),
       params: { account: user.get('ethAddress'), nft_id: parseInt(id), amount: parseInt(feed) }
-    };
-    const result = await exeFunc(options);
+    }
+    const result = await exeFunc(options)
     console.log(result)
   }
   
   const growToYoung = async () => {
-    if (!user){return};
+    if (!user){return}
     const options = {
       contractAddress: hogePandasAddress,
       functionName: "growToYoung",
       abi: CONTRACT_ABI,
       msgValue: Moralis.Units.ETH("0.05"),
       params: { account: user.get('ethAddress'), nft_id: parseInt(id) }
-    };
-    const result = await exeFunc(options);
+    }
+    const result = await exeFunc(options)
     console.log(result)
   }
 
   const growToAdult = async () => {
-    if (!user){return};
+    if (!user){return}
     const options = {
       contractAddress: hogePandasAddress,
       functionName: "growToAdult",
       abi: CONTRACT_ABI,
       msgValue: Moralis.Units.ETH("0.1"),
       params: { account: user.get('ethAddress'), nft_id: parseInt(id) }
-    };
-    const result = await exeFunc(options);
+    }
+    const result = await exeFunc(options)
     console.log(result)
   }
 
@@ -254,7 +255,7 @@ function App() {
       <p><br></br></p>
       <ReactPlayer playing url={animate} height='100%' controls={true} loop={true} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
