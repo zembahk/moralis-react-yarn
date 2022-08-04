@@ -1,5 +1,4 @@
-export const CONTRACT_ADDRESS = "0x5Ea0333638b035BB911eD77F101C2bea979A2843",
-    CONTRACT_ABI = [
+export const CONTRACT_ABI = [
         {
             "inputs": [],
             "stateMutability": "payable",
