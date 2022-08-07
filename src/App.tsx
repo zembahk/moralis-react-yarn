@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react'
 import './App.css'
 import { CONTRACT_ABI } from './abi'
-import { useMoralis, useChain, useWeb3ExecuteFunction } from 'react-moralis'
+import { useMoralis, useChain } from 'react-moralis'
 import Moralis from 'moralis'
 import ReactPlayer from 'react-player'
 
@@ -220,20 +220,21 @@ function App() {
 
   return (
     <div>
-      <h1>🀤🐼HogePandas🐼🀤</h1>
-      <button id="login_btn" onClick={login} disabled={isAuthenticated || isAuthenticating}>Moralis Metamask Login</button>
-      <button id="logout_btn" onClick={logOut} disabled={!isAuthenticated}>Logout</button>
-      <div>{userAddress}</div>
-      <p></p>
+      <h1>🀤🐼HogePandas🐼🀤
+        <p></p>
+        <div className='Address'>{userAddress || "Login To Use Functions"}</div>
+      </h1>
+      <button className='Login' id="login_btn" onClick={login} hidden={isAuthenticated} disabled={isAuthenticating}>Moralis Metamask Login</button>
+      <button className='Login' id="logout_btn" onClick={logOut} hidden={!isAuthenticated}>Logout</button>
+  
       <button id='clear_btn' onClick={clearData} >Clear Fields</button>
-      &emsp;
-      <button id='data_btn' onClick={getTokenData} disabled={!isAuthenticated || !id || parseInt(id) < 0}>Fetch Token Data</button>
+      <button id='data_btn' onClick={getTokenData} hidden={!isAuthenticated || !id || parseInt(id) < 0}>Fetch Token Data</button>
       <br></br>
       <label> Token ID: </label>
       <input id='input_id' type='number' name='id' onChange={handleIdChange} value={id} />
       <br></br>
       <label> Name: </label>
-      <input id="input_name" type="text" name="name" onChange={handleNameChange} value={name} autoFocus/>
+      <input id="input_name" type="text" name="name" onChange={handleNameChange} value={name} autoFocus disabled={parseInt(id) >= 0}/>
       <button id="panda_btn" onClick={newPanda} disabled={!isAuthenticated || !name || parseInt(id) > -1 }>New HogePanda 🐼</button>
       <br></br>
       <input id="input_title" type="text" name="title" value={title} disabled />
@@ -253,7 +254,7 @@ function App() {
       <input id='input_feed' type='number' name='feed' onChange={handleFeedChange} value={feed}/>
       <button id='feed_btn' onClick={feedBamboo} disabled={!isAuthenticated || !feed || parseInt(feed) < 1 || parseInt(id) < 1}>Feed 🐼 Bamboo 🀤</button>
       <p><br></br></p>
-      <ReactPlayer playing url={animate} height='100%' controls={true} loop={true} />
+      <ReactPlayer playing url={animate} width='100%' controls={true} loop={true} />
     </div>
   )
 }
