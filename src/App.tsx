@@ -2,10 +2,7 @@ import React, { useEffect, useState} from 'react'
 import './App.css'
 import { CONTRACT_ABI } from './abi'
 import { useMoralis, useChain } from 'react-moralis'
-<<<<<<< Updated upstream
-=======
 import Moralis from 'moralis'
->>>>>>> Stashed changes
 import ReactPlayer from 'react-player'
 import { SuccessPopup, ErrorPopup, ExecutedPopup } from './components/result-popups'
 
@@ -91,9 +88,6 @@ function App() {
     console.log('Logged in as: \n\t',user!.get('ethAddress'))
     await logout()
     setUserAddress('')
-<<<<<<< Updated upstream
-    console.log('Logging out DONE')
-=======
     console.log("Logging out DONE")
   }
 
@@ -108,7 +102,6 @@ function App() {
       const re = await JSON.parse(JSON.stringify(e))
       return { "Execute Error": re.message }
     }
->>>>>>> Stashed changes
   }
 
   const getTokenData = async () => {
