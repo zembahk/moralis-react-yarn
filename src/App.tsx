@@ -226,19 +226,18 @@ function App() {
       </h1>
       <button className='Login' id="login_btn" onClick={login} hidden={isAuthenticated} disabled={isAuthenticating}>Moralis Metamask Login</button>
       <button className='Login' id="logout_btn" onClick={logOut} hidden={!isAuthenticated}>Logout</button>
-  
+      <label> Token ID: </label>
+      <input className="inp-border a2" id='input_id' type='number' name='id' onChange={handleIdChange} value={id} />
+      <br></br>
       <button id='clear_btn' onClick={clearData} >Clear Fields</button>
       <button id='data_btn' onClick={getTokenData} hidden={!isAuthenticated || !id || parseInt(id) < 0}>Fetch Token Data</button>
       <br></br>
-      <label> Token ID: </label>
-      <input id='input_id' type='number' name='id' onChange={handleIdChange} value={id} />
-      <br></br>
       <label> Name: </label>
-      <input id="input_name" type="text" name="name" onChange={handleNameChange} value={name} autoFocus disabled={parseInt(id) >= 0}/>
+      <input className="inp-border a2" id="input_name" type="text" name="name" onChange={handleNameChange} value={name} autoFocus disabled={parseInt(id) >= 0}/>
       <button id="panda_btn" onClick={newPanda} disabled={!isAuthenticated || !name || parseInt(id) > -1 }>New HogePanda 🐼</button>
       <br></br>
-      <input id="input_title" type="text" name="title" value={title} disabled />
-      <input id="input_description" type="text" name="description" value={description} disabled />
+      <input className="inp-border a2" id="input_title" type="text" name="title" value={title} disabled />
+      <input className="inp-border a2" id="input_description" type="text" name="description" value={description} disabled />
       <p></p>
       <button id='young_btn' onClick={growToYoung} disabled={!isAuthenticated || !id 
         || title !== 'New Hoge Panda' || fed < 1 || !fed }>Grow To Young 🐼</button>
@@ -246,12 +245,12 @@ function App() {
         || title !== 'Young Hoge Panda' || fed < 3 || !fed}>Grow To Adult 🐼</button>
       <br></br>
       <button id='fed_btn' onClick={getTimesFed} disabled={!isAuthenticated || !id}>Times Fed 🀤</button>
-      <input id='times_fed' type='number' name='fed' value={fed} disabled />
+      <input className="inp-border a2" id='times_fed' type='number' name='fed' value={fed} disabled />
       <br></br>
-      <input id="input_bamboo" type="number" name="bamboo" onChange={handleBambooChange} value={bamboo} />
+      <input className="inp-border a2" id="input_bamboo" type="number" name="bamboo" onChange={handleBambooChange} value={bamboo} />
       <button id="bamboo_btn" onClick={createBamboo} disabled={!isAuthenticated || !bamboo || parseInt(bamboo) < 1}>Get Bamboo 🀤</button>
       <br></br>
-      <input id='input_feed' type='number' name='feed' onChange={handleFeedChange} value={feed}/>
+      <input className="inp-border a2" id='input_feed' type='number' name='feed' onChange={handleFeedChange} value={feed}/>
       <button id='feed_btn' onClick={feedBamboo} disabled={!isAuthenticated || !feed || parseInt(feed) < 1 || parseInt(id) < 1}>Feed 🐼 Bamboo 🀤</button>
       <p><br></br></p>
       <ReactPlayer playing url={animate} width='100%' controls={true} loop={true} />
