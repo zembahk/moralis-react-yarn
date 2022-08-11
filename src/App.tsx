@@ -17,7 +17,7 @@ function App() {
   const [animate, setAnimate] = useState('')
   const [userAddress, setUserAddress] = useState('')
   const [hogePandasAddress] = useState('0x5Ea0333638b035BB911eD77F101C2bea979A2843') // polygon chain 
-  const [bambooOwned, setBambooOwned] = useState(0)
+  const [bambooOwned, setBambooOwned] = useState(-1)
   const [tokenIds, setTokenIds] = useState<Array<number>>()
 
   const handleNameChange = (event: { target: { value: React.SetStateAction<string> } }) => {
@@ -123,8 +123,9 @@ function App() {
     console.log("Logged in as: \n\t", userAddress)
     await logout()
     setUserAddress('')
-    setTokenIds([])
-    setBambooOwned(0)
+    setBambooOwned(-1)
+    var none = [-1] || undefined
+    setTokenIds(none)
     console.log("Logging out DONE")
   }
 
@@ -256,15 +257,21 @@ function App() {
   const growYoungText = isAuthenticated && fed >= 1  ? 'Grow To Young 🐼' : 'Feed 🐼  1🀤'
   const growAdultText = isAuthenticated && fed >= 3  ? 'Grow To Audlt 🐼' : 'Feed 🐼  3🀤'
 
-  const SomeText = () => {
+  const SomeList = () => {
     if(tokenIds){
       const listIds = tokenIds!.map((id, index) =>
-        <text  key={index}> ({id}) </text>
+        <span  key={index}> ({id})🐼  </span> 
       );
       return (
-        
-        <ul> Owned Token IDs:{listIds}</ul>
+        <ul>Token IDs:{listIds}</ul>
       );
+    }
+    else {
+      return (
+        
+        <span><p></p>Token IDs: (-1)</span>
+        
+      )
     }
   }
 
@@ -278,8 +285,8 @@ function App() {
           {userAddress || "Login To Use Functions"}
           <p></p>
           <h3> 
-          Bamboo Owned: {bambooOwned}
-          {SomeText()}
+          Bamboo Owned: {bambooOwned}🀤
+          {SomeList()}
           </h3>
         </div>
       </h1>
