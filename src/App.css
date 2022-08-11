@@ -1,4 +1,14 @@
+
+body{
+  color: rgb(223, 223, 223);
+  margin: 0;
+  padding: 0;
+  background: #333333;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
 h1 {
+  font-size: calc(10px + 2vmin);
   text-align: center;
   text-shadow: 
     #000 0px 0px 2px, 
@@ -10,10 +20,9 @@ h1 {
     #3dff3d 0px 1px 65px, 
     #3dff3d 0px 1px 80px;
   color: #dbffdd;
-  background: #333333;
-  padding: 50px;
+  padding: 2em;
   margin-top: 0;
-  margin-bottom: 5px;
+  margin-bottom: 1em;
 }
 
 .Address{
@@ -22,6 +31,24 @@ h1 {
 .Login{
   position: absolute;
   right: 1em;
+}
+
+.some-menu {
+  margin-left: 3em;
+}
+
+.some-box{
+  margin: 3em;
+
+  box-shadow: rgba(10, 10, 104, 0.57) 0px 0px 30px 10px,
+    rgba(40, 36, 247, 0.55) 0px 0px 60px 40px,
+    rgba(199, 241, 61, 0.89) 0px 0px 30px 50px ;
+}
+
+.big-btn{
+  font-size: 20px;
+  padding: 7px;
+  border-radius: 15px;
 }
 
 button {
@@ -58,6 +85,7 @@ button:hover {
   background-image: -o-linear-gradient(top, #4381a8, #18394f);
   background-image: linear-gradient(to bottom, #4381a8, #18394f);
   text-decoration: none;
+  
 }
 
 button:active:enabled {
@@ -68,18 +96,6 @@ button:active:enabled {
 button:disabled {
   background: #71909b;
   box-shadow: 0 0px 0px #999;
-}
-
-body{
-  color: rgb(255, 255, 255);
-  margin: 0;
-  padding: 0;
-  background: #252525;
-  position: absolute;
-  top: 50%;
-  left:50%;
-  transform: translate(-50%, -50%);
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .inp-border{
@@ -104,7 +120,7 @@ input:disabled {
 }
 
 .a2{
-  background: linear-gradient(330deg,#2CFFF2 0%, #38abe0 30%, #078618 50%, #29e057 80%, #a1ec16  100%);
+  background: linear-gradient(150deg,#2CFFF2 10%, #38abe0 20%, #078618 70%, #29e057 90%, #a1ec16  100%);
 }
 .a2 >input{
  color: #2CFFF2;
@@ -114,13 +130,13 @@ input:disabled {
  opacity: 0.6; /* Firefox */
 }
 .inp-border:enabled:hover{
-  background: linear-gradient(310deg,#a1ec16 0%, #29e057  20%, #078618  50%, #38abe0 70%, #2CFFF2  100%);
+  background: linear-gradient(-190deg,#2CFFF2 10%, #38abe0 20%, #078618 70%, #29e057 90%, #a1ec16  100%);
 }
 .inp-border:focus-within{
-  background: linear-gradient(290deg, #668d8a 0%, #5a2a41 30%, #be7c56 70%, #bd3e3e 100%);
+  background: linear-gradient(0deg, #668d8a 0%, #5a2a41 30%, #be7c56 70%, #bd3e3e 100%);
 }
 .inp-border:focus-within:hover{
-  background: linear-gradient(290deg, #668d8a 0%, #5a2a41 30%, #be7c56 70%, #bd3e3e 100%);
+  background: linear-gradient(-3deg, #668d8a 0%, #5a2a41 30%, #be7c56 70%, #bd3e3e 100%);
 }
 
 
