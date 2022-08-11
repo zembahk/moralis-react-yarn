@@ -270,6 +270,8 @@ function App() {
 
   return (
     <div>
+      <button className='Login big-btn' id="login_btn" onClick={login} hidden={isAuthenticated} disabled={isAuthenticating}>Moralis Metamask Login</button>
+      <button className='Login big-btn' id="logout_btn" onClick={logOut} hidden={!isAuthenticated}>Logout</button>
       <h1>🀤🐼HogePandas🐼🀤
         <p></p>
         <div className='Address'>
@@ -282,8 +284,7 @@ function App() {
         </div>
       </h1>
       <div className='some-menu'>
-        <button className='Login' id="login_btn" onClick={login} hidden={isAuthenticated} disabled={isAuthenticating}>Moralis Metamask Login</button>
-        <button className='Login' id="logout_btn" onClick={logOut} hidden={!isAuthenticated}>Logout</button>
+
         <label> Token ID: </label>
         <input className="inp-border a2" id='input_id' type='number' name='id' onChange={handleIdChange} value={id} />
         <button className='big-btn' id='data_btn' onClick={getTokenData} hidden={!isAuthenticated || !id || parseInt(id) < 0}>Fetch Token Data</button>
